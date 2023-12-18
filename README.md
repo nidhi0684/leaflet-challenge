@@ -46,8 +46,8 @@ The instructions for this activity are broken into two parts:
 
 
 ## How to execute code?
-1. **Important** - Please add **API_KEY** in "./static/js/config.js". Without the API_KEY, the site will not show visualization.
-2. Click on this link [URL]() to launch visualization for Earthquake and Tectonic using leaflet.
+1. **Important** - Please add **API_KEY** in "./static/js/config.js". Without the API_KEY, the site will not show map visualization. It will just show Eathquake data.
+2. Click on this link [URL](https://nidhi0684.github.io/leaflet-challenge/) to launch visualization for Earthquake and Tectonic using leaflet.
 3. By deafult, Outdoors as base layer and Earthquakes data as the overlay will be selected. 
 4. Other options to select for base layer are Grayscale and Satellite.
 5. To see Tectonic layer, select "Tectonic Layer" checkbox. 
