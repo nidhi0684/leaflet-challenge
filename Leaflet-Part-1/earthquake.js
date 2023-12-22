@@ -17,13 +17,18 @@ function createFeatures(earthquakeData){
 
     // Give each feature a popup describing the place, ISO time format, magnitude, depth, and number of time felt
     function onEachFeature(feature, layer){
-        layer.bindPopup(`<h3>Location: ${feature.properties.place}</h3><hr><p>Time: ${new Date(feature.properties.time)}</p><hr><p>Magnitude: ${feature.properties.mag}</p><hr><p>Depth: ${feature.geometry.coordinates[2]}</p><hr><p>Number of Incidents: ${feature.properties.felt}`);
+        if (feature.properties.felt == null) {
+            layer.bindPopup(`<h3>Location: ${feature.properties.place}</h3><hr><p>Time: ${new Date(feature.properties.time)}</p><hr><p>Magnitude: ${feature.properties.mag}</p><hr><p>Depth: ${feature.geometry.coordinates[2]}</p>`);
+        }
+        else {
+            layer.bindPopup(`<h3>Location: ${feature.properties.place}</h3><hr><p>Time: ${new Date(feature.properties.time)}</p><hr><p>Magnitude: ${feature.properties.mag}</p><hr><p>Depth: ${feature.geometry.coordinates[2]}</p><hr><p>Number of Incidents: ${feature.properties.felt}`);
+        }
     }
 
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     function createCircleMarker(feature, latlng){
        let options = {
-        radius:feature.properties.mag*4,
+        radius:getRadius(feature.properties.mag),
         fillColor: chooseColor(feature.geometry.coordinates[2]),
         color: "#000000",
         weight: 1,
@@ -60,6 +65,13 @@ function chooseColor(value){
         default:
             return "#FEB24C";
     }
+}
+
+function getRadius(value){
+    if (value === 0) {
+        return 1;
+    }
+    return value * 4;
 }
 
 // Create map legend to provide context for map data
